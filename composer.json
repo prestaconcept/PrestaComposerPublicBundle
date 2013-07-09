@@ -10,9 +10,18 @@
     ],
     "minimum-stability": "stable",
     "require": {
-        "symfony/symfony": "2.*",
+        "symfony/symfony": ">=2.2.0"
     },
     "require-dev": {
-        
+        "phpunit/phpunit": "3.7.22"
+    },
+    "autoload": {
+        "psr-0": { "Presta\\AnyPublicBlendBundle": "" }
+    },
+    "target-dir": "Presta/AnyPublicBlendBundle",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
     }
 }
