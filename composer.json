@@ -1,0 +1,18 @@
+{
+    "name": "presta/any-public-blend-bundle",
+    "description": "A symfony 2 bundle that provides a simple way to include public 3rd-party libraries (javascripts, css, pictures ...) into your projects and keep its up-to-date.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "David Epely",
+            "email": "esion99@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "symfony/symfony": "2.*",
+    },
+    "require-dev": {
+        
+    }
+}
