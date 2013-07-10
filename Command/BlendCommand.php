@@ -2,7 +2,6 @@
 namespace Presta\AnyPublicBlendBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -55,7 +54,6 @@ class BlendCommand extends ContainerAwareCommand
         
         foreach ($finder as $directory) {
             if ($input->getOption('force')) {
-                var_dump('rm',$directory->getPath() );
                 if ($fs->exists($directory->getPath())) {
                     $fs->remove($directory->getPath());
                 }

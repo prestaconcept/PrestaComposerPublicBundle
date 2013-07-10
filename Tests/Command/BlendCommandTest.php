@@ -2,7 +2,9 @@
 
 namespace Presta\AnyPublicBlendBundle\Tests\Command;
 
-use Symfony\Component\Console\Application;
+require_once __DIR__.'/../app/AppKernel.php';
+
+use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\Console\Tester\CommandTester;
 use Presta\AnyPublicBlendBundle\Command\BlendCommand;
 
@@ -15,15 +17,23 @@ class BlendCommandTest extends \PHPUnit_Framework_TestCase
 {
     public function testExecute()
     {
-        $application = new Application();
+        $application = $this->getApplication();
         $application->add(new BlendCommand());
-
+        
         $command = $application->find('presta:any-public-blend');
         $commandTester = new CommandTester($command);
-        $commandTester->execute(array('command' => $command->getName()));
+        $commandTester->execute(array('command' => $command->getName(), '--force' => true));
 
-        $this->assertRegExp('/.../', $commandTester->getDisplay());
+        $this->assertRegExp('/The library foo\/bar has been added/', $commandTester->getDisplay());
+    }
+    
+    /**
+     * @return \AppKernel
+     */
+    protected function getApplication()
+    {
+        $kernel = new \AppKernel('test', true);
+        $kernel->boot();
+        return new Application($kernel);
     }
 }
-
-?>

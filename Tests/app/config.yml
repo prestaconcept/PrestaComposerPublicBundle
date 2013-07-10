@@ -1,0 +1,22 @@
+framework:
+    #esi:             ~
+    translator:      ~ 
+    secret:          secret
+    router:
+        resource: "%kernel.root_dir%/config/routing.yml"
+        strict_requirements: %kernel.debug%
+    form:            true
+    csrf_protection: true
+    validation:      { enable_annotations: true }
+    default_locale:  en
+    session:         ~
+
+
+
+presta_any_public_blend:
+    symlink: true
+    blend:
+        foo/bar:
+            vendor: foo
+            name: bar
+            path: /

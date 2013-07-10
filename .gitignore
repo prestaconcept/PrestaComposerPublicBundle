@@ -2,3 +2,4 @@ Resources/public/*
 
 composer.lock
 vendor/
+Tests/app/cache
