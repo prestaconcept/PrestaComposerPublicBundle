@@ -9,7 +9,7 @@ libraries (javascripts, css, pictures ...) into your projects and keep its up-to
 
 ## Why this bundle?
 
-Beccause there's lot of meta bundles that provides libraries like jQuery, bootstrap
+Because there's lot of meta bundles that provides libraries like jQuery, bootstrap
 and only the most populars are maintain and up-to-date.
 The probably fastest other way is to freeze the library into your project and sometimes hack it ...
 Wait ?! nooooooo ! Nooooo! 
