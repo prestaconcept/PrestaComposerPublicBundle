@@ -30,4 +30,3 @@ class AppKernel extends Kernel
         $loader->load(__DIR__.'/config.yml');
     }
 }
-

@@ -18,8 +18,8 @@ use Symfony\Component\Finder\Finder;
 class BlendCommand extends ContainerAwareCommand
 {
     protected $bundlePath;
-    
-    public function __construct($name = null) 
+
+    public function __construct($name = null)
     {
         parent::__construct($name);
 
@@ -38,9 +38,9 @@ class BlendCommand extends ContainerAwareCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $fs = new Filesystem();
-        
+
         $output->writeln(sprintf('Blend public libraries in <comment>Presta\AnyPublicBlendBundle</comment>'));
-        
+
         /**
          * @var array of [vendor[] => name] already present
          */
@@ -51,7 +51,7 @@ class BlendCommand extends ContainerAwareCommand
                 ->depth('> 0')
                 ->depth('< 2')
                 ->in($this->bundlePath);
-        
+
         foreach ($finder as $directory) {
             if ($input->getOption('force')) {
                 if ($fs->exists($directory->getPath())) {
@@ -59,57 +59,57 @@ class BlendCommand extends ContainerAwareCommand
                 }
                 continue;
             }
-            
+
             if (!isset($blended[$directory->getRelativePath()])) {
                 $blended[$directory->getRelativePath()] = [];
             }
-            
+
             $libName = substr($directory->getRelativePathName(), strpos($directory->getRelativePathName(), '/') + 1);
-            
+
             $blended[$directory->getRelativePath()][$libName] = '/';
-            
+
         }
-        
+
         //get configuration
         $toBlend = [];
         $config = $this->getContainer()->getParameter('presta_any_public_blend');
         $accessor = PropertyAccess::getPropertyAccessor();
-        
+
         //check target folder
         foreach ($accessor->getValue($config, '[blend]') as $key => $params) {
             $vendor = $accessor->getValue($params, '[vendor]');
             $name = $accessor->getValue($params, '[name]');
             $path = $accessor->getValue($params, '[path]');
-            
+
             if (!$vendor && !$name) {
                 list($vendor, $name) = spliti('/', $key, 2);
             }
-            
+
             if (!isset($toBlend[$vendor])) {
                 $toBlend[$vendor] = [];
             }
-            
+
             if (!isset($blended[$vendor]) || (
-                    !isset($blended[$vendor][$name])&& 
+                    !isset($blended[$vendor][$name])&&
                     !isset($toBlend[$vendor][$name])))
             {
                 $toBlend[$vendor][$name] = $path;
             }
         }
-        
+
         //include library
         $vendorDir = $this->getContainer()->getParameter('kernel.root_dir') . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'vendor';
-        
+
         foreach ($toBlend as $vendor => $names) {
             foreach ($names as $name => $path) {
                 $originPath = realpath($vendorDir . DIRECTORY_SEPARATOR . $vendor . DIRECTORY_SEPARATOR . $name . DIRECTORY_SEPARATOR . $path);
                 $targetDir = realpath($this->bundlePath) . DIRECTORY_SEPARATOR . $vendor;
                 $targetPath = $targetDir . DIRECTORY_SEPARATOR . $name;
-                
+
                 if (!$originPath) {
                     throw new \InvalidArgumentException(sprintf('The origin path for "%s" does not exist : "%s"', "$vendor/$name", $originPath));
                 }
-                
+
                 if (!$fs->exists($targetDir)) {
                     $fs->mkdir($targetDir);
                 }

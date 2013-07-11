@@ -26,5 +26,3 @@ class ScriptHandler extends BaseScriptHandler
         static::executeCommand($event, $appDir, 'presta:any-public-blend');
     }
 }
-
-?>

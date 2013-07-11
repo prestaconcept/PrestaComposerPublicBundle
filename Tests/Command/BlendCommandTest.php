@@ -19,14 +19,14 @@ class BlendCommandTest extends \PHPUnit_Framework_TestCase
     {
         $application = $this->getApplication();
         $application->add(new BlendCommand());
-        
+
         $command = $application->find('presta:any-public-blend');
         $commandTester = new CommandTester($command);
         $commandTester->execute(array('command' => $command->getName(), '--force' => true));
 
         $this->assertRegExp('/The library foo\/bar has been added/', $commandTester->getDisplay());
     }
-    
+
     /**
      * @return \AppKernel
      */
@@ -34,6 +34,7 @@ class BlendCommandTest extends \PHPUnit_Framework_TestCase
     {
         $kernel = new \AppKernel('test', true);
         $kernel->boot();
+
         return new Application($kernel);
     }
 }
