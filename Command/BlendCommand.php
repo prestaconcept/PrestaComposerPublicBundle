@@ -66,7 +66,7 @@ class BlendCommand extends ContainerAwareCommand
             
             $libName = substr($directory->getRelativePathName(), strpos($directory->getRelativePathName(), '/') + 1);
             
-            $blended[$directory->getRelativePath()][] = $libName;
+            $blended[$directory->getRelativePath()][$libName] = '/';
             
         }
         
@@ -82,18 +82,18 @@ class BlendCommand extends ContainerAwareCommand
             $path = $accessor->getValue($params, '[path]');
             
             if (!$vendor && !$name) {
-                list($vendor, $name) = spliti('/', $key, 1);
+                list($vendor, $name) = spliti('/', $key, 2);
             }
             
             if (!isset($toBlend[$vendor])) {
                 $toBlend[$vendor] = [];
             }
             
-            if (!isset($blended[$vendor]) || 
-                    (array_search($name, $blended[$vendor]) === false && 
-                    array_search($name, $toBlend) === false))
+            if (!isset($blended[$vendor]) || (
+                    !isset($blended[$vendor][$name])&& 
+                    !isset($toBlend[$vendor][$name])))
             {
-                $toBlend[$vendor][] = $name;
+                $toBlend[$vendor][$name] = $path;
             }
         }
         
@@ -101,10 +101,14 @@ class BlendCommand extends ContainerAwareCommand
         $vendorDir = $this->getContainer()->getParameter('kernel.root_dir') . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'vendor';
         
         foreach ($toBlend as $vendor => $names) {
-            foreach ($names as $name) {
-                $originPath = realpath($vendorDir) . DIRECTORY_SEPARATOR . $vendor . DIRECTORY_SEPARATOR . $name;
+            foreach ($names as $name => $path) {
+                $originPath = realpath($vendorDir . DIRECTORY_SEPARATOR . $vendor . DIRECTORY_SEPARATOR . $name . DIRECTORY_SEPARATOR . $path);
                 $targetDir = realpath($this->bundlePath) . DIRECTORY_SEPARATOR . $vendor;
                 $targetPath = $targetDir . DIRECTORY_SEPARATOR . $name;
+                
+                if (!$originPath) {
+                    throw new \InvalidArgumentException(sprintf('The origin path for "%s" does not exist : "%s"', "$vendor/$name", $originPath));
+                }
                 
                 if (!$fs->exists($targetDir)) {
                     $fs->mkdir($targetDir);
