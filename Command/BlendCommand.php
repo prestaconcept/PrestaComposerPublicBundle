@@ -66,7 +66,7 @@ class BlendCommand extends ContainerAwareCommand
 
             $libName = substr($directory->getRelativePathName(), strpos($directory->getRelativePathName(), '/') + 1);
 
-            $blended[$directory->getRelativePath()][$libName] = '/';
+            $blended[$directory->getRelativePath()][$libName] = DIRECTORY_SEPARATOR;
 
         }
 
@@ -102,7 +102,7 @@ class BlendCommand extends ContainerAwareCommand
 
         foreach ($toBlend as $vendor => $names) {
             foreach ($names as $name => $path) {
-                $originPath = realpath($vendorDir . DIRECTORY_SEPARATOR . $vendor . DIRECTORY_SEPARATOR . $name . DIRECTORY_SEPARATOR . $path);
+                $originPath = realpath($vendorDir . DIRECTORY_SEPARATOR . $vendor . DIRECTORY_SEPARATOR . $name . DIRECTORY_SEPARATOR . ltrim($path, DIRECTORY_SEPARATOR));
                 $targetDir = realpath($this->bundlePath) . DIRECTORY_SEPARATOR . $vendor;
                 $targetPath = $targetDir . DIRECTORY_SEPARATOR . $name;
 
