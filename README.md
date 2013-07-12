@@ -1,5 +1,11 @@
 # PrestaAnyPublicBlend Bundle
 
+[![Build Status](https://travis-ci.org/prestaconcept/PrestaAnyPublicBlendBundle.png)](https://travis-ci.org/prestaconcept/PrestaAnyPublicBlendBundle)
+
+[![PrestaAnyPublicBlendBundle on Knpbundles](http://knpbundles.com/prestaconcept/PrestaAnyPublicBlendBundle/badge)](http://knpbundles.com/prestaconcept/PrestaAnyPublicBlendBundle)
+
+## Introduction
+
 The goal of this bundle is to provide a simple way to include public 3rd-party 
 libraries (javascripts, css, pictures ...) into your projects and keep its up-to-date.
 
