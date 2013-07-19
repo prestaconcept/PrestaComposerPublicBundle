@@ -1,6 +1,7 @@
 {
     "name": "presta/any-public-blend-bundle",
     "description": "A symfony 2 bundle that provides a simple way to include public 3rd-party libraries (javascripts, css, pictures ...) into your projects and keep its up-to-date.",
+    "keywords": ["symfony2", "bundle", "public", "javascript", "css", "3rd party", "prestaconcept"],
     "license": "MIT",
     "authors": [
         {
