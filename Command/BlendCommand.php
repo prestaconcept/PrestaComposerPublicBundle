@@ -61,7 +61,7 @@ class BlendCommand extends ContainerAwareCommand
             }
 
             if (!isset($blended[$directory->getRelativePath()])) {
-                $blended[$directory->getRelativePath()] = [];
+                $blended[$directory->getRelativePath()] = array();
             }
 
             $libName = substr($directory->getRelativePathName(), strpos($directory->getRelativePathName(), '/') + 1);
@@ -71,22 +71,21 @@ class BlendCommand extends ContainerAwareCommand
         }
 
         //get configuration
-        $toBlend = [];
+        $toBlend = array();
         $config = $this->getContainer()->getParameter('presta_any_public_blend');
-        $accessor = PropertyAccess::getPropertyAccessor();
 
         //check target folder
-        foreach ($accessor->getValue($config, '[blend]') as $key => $params) {
-            $vendor = $accessor->getValue($params, '[vendor]');
-            $name = $accessor->getValue($params, '[name]');
-            $path = $accessor->getValue($params, '[path]');
+        foreach ($config['blend'] as $key => $params) {
+            $vendor = isset($params['vendor']) ? $params['vendor'] : null;
+            $name = isset($params['name']) ? $params['name'] : null;
+            $path = isset($params['path']) ? $params['path'] : null;
 
             if (!$vendor && !$name) {
                 list($vendor, $name) = spliti('/', $key, 2);
             }
 
             if (!isset($toBlend[$vendor])) {
-                $toBlend[$vendor] = [];
+                $toBlend[$vendor] = array();
             }
 
             if (!isset($blended[$vendor]) || (
@@ -114,7 +113,7 @@ class BlendCommand extends ContainerAwareCommand
                     $fs->mkdir($targetDir);
                 }
 
-                if ($input->getOption('copy') == false && $accessor->getValue($config, '[symlink]')) {
+                if ($input->getOption('copy') == false && isset($config['symlink']) && $config['symlink']) {
                     $fs->symlink($originPath, $targetPath);
                 } else {
                     $fs->copy($originPath, $targetPath);
