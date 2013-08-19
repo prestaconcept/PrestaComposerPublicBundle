@@ -23,6 +23,7 @@ Wait ?! nooooooo ! Nooooo!
 So now make it better: start configure it using composer, use it as any other assets
 and then keep it up-to-date simply with composer.
 
+
 ## Installation
 
 1. Add the bundle to the `composer.json` requirements' section :
@@ -144,5 +145,10 @@ At last but not least, do not forget to include your assets:
 {% endjavascripts %}
 ~~~
 
+## Final thought
+
+If you're still not convinced by PrestaAnyPublicBlendBundle, please consider the great [component installer for composer][3].
+
 [1]: http://getcomposer.org/doc/05-repositories.md#package-2
 [2]: https://packagist.org/
+[3]: https://github.com/RobLoach/component-installer
