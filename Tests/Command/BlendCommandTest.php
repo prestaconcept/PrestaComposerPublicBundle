@@ -1,12 +1,12 @@
 <?php
 
-namespace Presta\AnyPublicBlendBundle\Tests\Command;
+namespace Presta\ComposerPublicBundle\Tests\Command;
 
 require_once __DIR__.'/../app/AppKernel.php';
 
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\Console\Tester\CommandTester;
-use Presta\AnyPublicBlendBundle\Command\BlendCommand;
+use Presta\ComposerPublicBundle\Command\BlendCommand;
 use Symfony\Component\Filesystem\Filesystem;
 /**
  * Description of TestBlendCommand
@@ -27,7 +27,7 @@ class BlendCommandTest extends \PHPUnit_Framework_TestCase
         $application = $this->getApplication();
         $application->add(new BlendCommand());
 
-        $command = $application->find('presta:any-public-blend');
+        $command = $application->find('presta:composer-public');
         $commandTester = new CommandTester($command);
         $commandTester->execute(array('command' => $command->getName(), '--force' => true));
 

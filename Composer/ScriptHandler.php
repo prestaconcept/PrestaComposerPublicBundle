@@ -1,6 +1,6 @@
 <?php
 
-namespace Presta\AnyPublicBlendBundle\Composer;
+namespace Presta\ComposerPublicBundle\Composer;
 
 use Sensio\Bundle\DistributionBundle\Composer\ScriptHandler as BaseScriptHandler;
 use Composer\Script\CommandEvent;
@@ -12,7 +12,7 @@ use Composer\Script\CommandEvent;
  */
 class ScriptHandler extends BaseScriptHandler
 {
-    public static function AnyPublicBlend(CommandEvent $event)
+    public static function ComposerPublic(CommandEvent $event)
     {
         $options = self::getOptions($event);
         $appDir = $options['symfony-app-dir'];
@@ -23,6 +23,6 @@ class ScriptHandler extends BaseScriptHandler
             return;
         }
 
-        static::executeCommand($event, $appDir, 'presta:any-public-blend');
+        static::executeCommand($event, $appDir, 'presta:composer-public');
     }
 }

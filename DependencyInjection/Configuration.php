@@ -1,6 +1,6 @@
 <?php
 
-namespace Presta\AnyPublicBlendBundle\DependencyInjection;
+namespace Presta\ComposerPublicBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -18,11 +18,11 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('presta_any_public_blend');
+        $rootNode = $treeBuilder->root('presta_composer_public');
 
         $rootNode
             ->children()
-                ->booleanNode('symlink')->defaultTrue()->info('create a symlink in PrestaAnyPublicBundle folder or a hardcopy.')->end()
+                ->booleanNode('symlink')->defaultTrue()->info('create a symlink in PrestaComposerPublicBundle folder or a hardcopy.')->end()
                 ->arrayNode('blend')
                     ->info('Without parameters the key is used to detect vendor & name')
                     ->prototype('array')

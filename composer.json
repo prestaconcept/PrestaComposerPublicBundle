@@ -1,5 +1,5 @@
 {
-    "name": "presta/any-public-blend-bundle",
+    "name": "presta/composer-public-bundle",
     "description": "A symfony 2 bundle that provides a simple way to include public 3rd-party libraries (javascripts, css, pictures ...) into your projects and keep its up-to-date.",
     "keywords": ["symfony2", "bundle", "public", "javascript", "css", "3rd party", "prestaconcept"],
     "license": "MIT",
@@ -17,9 +17,9 @@
         "phpunit/phpunit": "3.7.22"
     },
     "autoload": {
-        "psr-0": { "Presta\\AnyPublicBlendBundle": "" }
+        "psr-0": { "Presta\\ComposerPublicBundle": "" }
     },
-    "target-dir": "Presta/AnyPublicBlendBundle",
+    "target-dir": "Presta/ComposerPublicBundle",
     "extra": {
         "branch-alias": {
             "dev-master": "1.0.x-dev"

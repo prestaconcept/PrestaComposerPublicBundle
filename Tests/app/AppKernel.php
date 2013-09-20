@@ -18,7 +18,7 @@ class AppKernel extends Kernel
         $bundles = array(
             // Dependencies
             new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
-            new Presta\AnyPublicBlendBundle\PrestaAnyPublicBlendBundle(),
+            new Presta\ComposerPublicBundle\PrestaComposerPublicBundle(),
         );
 
         return $bundles;

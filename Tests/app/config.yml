@@ -13,7 +13,7 @@ framework:
 
 
 
-presta_any_public_blend:
+presta_composer_public:
     symlink: true
     blend:
         foo/bar:

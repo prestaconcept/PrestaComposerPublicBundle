@@ -1,5 +1,5 @@
 <?php
-namespace Presta\AnyPublicBlendBundle\Command;
+namespace Presta\ComposerPublicBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
@@ -28,8 +28,8 @@ class BlendCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
-            ->setName('presta:any-public-blend')
-            ->setDescription('Include library in public folder of PrestaAnyPublicBlendBundle')
+            ->setName('presta:composer-public')
+            ->setDescription('Include library in public folder of PrestaComposerPublicBundle')
             ->addOption('force', 'f', InputOption::VALUE_NONE, 'Force regeneration. Clean old libraries.')
             ->addOption('copy', 'c', InputOption::VALUE_NONE, 'Force the copy of libraries instead of symlink')
         ;
@@ -39,7 +39,7 @@ class BlendCommand extends ContainerAwareCommand
     {
         $fs = new Filesystem();
 
-        $output->writeln(sprintf('Blend public libraries in <comment>Presta\AnyPublicBlendBundle</comment>'));
+        $output->writeln(sprintf('Blend public libraries in <comment>Presta\ComposerPublicBundle</comment>'));
 
         /**
          * @var array of [vendor[] => name] already present
@@ -72,7 +72,7 @@ class BlendCommand extends ContainerAwareCommand
 
         //get configuration
         $toBlend = array();
-        $config = $this->getContainer()->getParameter('presta_any_public_blend');
+        $config = $this->getContainer()->getParameter('presta_composer_public');
 
         //check target folder
         foreach ($config['blend'] as $key => $params) {
