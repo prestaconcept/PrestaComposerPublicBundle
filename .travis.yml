@@ -12,5 +12,5 @@ script: vendor/bin/phpunit -c Tests/app
 
 notifications:
   email:
-    - depely@prestaconcept.net
+    - njoubert@prestaconcept.net
     
