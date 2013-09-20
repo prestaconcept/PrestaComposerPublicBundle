@@ -6,7 +6,13 @@
     "authors": [
         {
             "name": "David Epely",
-            "email": "esion99@gmail.com"
+            "email": "depely@prestaconcept.net",
+            "role": "Initial developer"
+        },
+        {
+            "name": "Nicolas Joubert",
+            "email": "njoubert@prestaconcept.net",
+            "role": "Maintainer, Developer"
         }
     ],
     "minimum-stability": "stable",
