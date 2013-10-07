@@ -171,3 +171,7 @@ If you're still not convinced by PrestaComposerPublicBundle, please consider the
 [1]: http://getcomposer.org/doc/05-repositories.md#package-2
 [2]: https://packagist.org/
 [3]: https://github.com/RobLoach/component-installer
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/prestaconcept/prestacomposerpublicbundle/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
