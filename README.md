@@ -27,31 +27,49 @@ and then keep it up-to-date simply with composer.
 ## Installation
 
 1. Add the bundle to the `composer.json` requirements' section :
-
-~~~json
-"presta/composer-public-bundle": "1.*"
-~~~
+    
+    ~~~json
+    "presta/composer-public-bundle": "1.*"
+    ~~~
 
 2. Append the following command to post install/update's section of `composer.json` like this :
+    
+    ~~~json
+        "scripts": {
+            "post-install-cmd": [
+                "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+                "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+                "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+                "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
+                "Presta\\ComposerPublicBundle\\Composer\\ScriptHandler::ComposerPublic"
+            ],
+            "post-update-cmd": [
+                "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+                "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+                "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+                "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
+                "Presta\\ComposerPublicBundle\\Composer\\ScriptHandler::ComposerPublic"
+            ]
+        },
+    ~~~
+    
+3. Add bundle to `app/AppKernel.php` :
+    
+    ~~~
+    class AppKernel extends Kernel
+    {
+        public function registerBundles()
+        {
+            $bundles = array(
+                //...
+                new Presta\ComposerPublicBundle\PrestaComposerPublicBundle(),
+            );
+    
+           return $bundles;
+        }
+    }
+    ~~~
 
-~~~json
-    "scripts": {
-        "post-install-cmd": [
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
-            "Presta\\ComposerPublicBundle\\Composer\\ScriptHandler::ComposerPublic"
-        ],
-        "post-update-cmd": [
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
-            "Presta\\ComposerPublicBundle\\Composer\\ScriptHandler::ComposerPublic"
-        ]
-    },
-~~~
 
 ## Usage
 
@@ -115,7 +133,8 @@ Or shortly:
 
 ~~~yaml
 presta_composer_public:
-    wesnolte/Pajinate: ~
+    blend:
+        wesnolte/Pajinate: ~
 ~~~
 
 Launch the command `app/console config:dump-reference PrestaComposerPublicBundle`
@@ -128,7 +147,7 @@ Finally you only need to install your vendors:
 composer.phar install
 ~~~
 
-**Note: ** 
+**Note:**
 
 > Since the library is in your vendors, you can also launch the following command 
 to store or restore the library in the PrestaComposerPublicBundle folder.
