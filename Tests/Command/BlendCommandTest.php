@@ -47,7 +47,7 @@ class BlendCommandTest extends \PHPUnit_Framework_TestCase
      */
     protected function getApplication()
     {
-        $kernel = $this->getMockBuilder('\AppKernel')
+        $kernel = $this->getMockBuilder('Presta\ComposerPublicBundle\AppKernel')
                 ->disableOriginalConstructor()
                 ->setMethods(array('getRootDir'))
                 ->getMock();

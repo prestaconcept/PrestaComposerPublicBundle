@@ -7,10 +7,11 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-namespace Presta\ComposerPublicBundle\app;
+namespace Presta\ComposerPublicBundle;
 
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
+use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
 
 class AppKernel extends Kernel
 {
@@ -18,8 +19,8 @@ class AppKernel extends Kernel
     {
         $bundles = array(
             // Dependencies
-            new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
-            new Presta\ComposerPublicBundle\PrestaComposerPublicBundle(),
+            new FrameworkBundle(),
+            new PrestaComposerPublicBundle(),
         );
 
         return $bundles;

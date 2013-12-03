@@ -12,7 +12,7 @@ before_script:
 
 script:
     - vendor/bin/phpunit -c Tests/app
-    - phpcs --ignore=/vendor/*,/Tests/Resources/app/* --extensions=php --encoding=utf-8 --standard=PSR2 -np .
+    - phpcs --ignore=/vendor/*,/Tests/cache/* --extensions=php --encoding=utf-8 --standard=PSR2 -np .
 
 notifications:
   email:
