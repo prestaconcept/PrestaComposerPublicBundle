@@ -1,7 +1,12 @@
 # PrestaComposerPublic Bundle
 
 [![Build Status](https://travis-ci.org/prestaconcept/PrestaComposerPublicBundle.png)](https://travis-ci.org/prestaconcept/PrestaComposerPublicBundle)
+[![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/prestaconcept/PrestaComposerPublicBundle/badges/quality-score.png?s=c9cd4805f46ef250b1310143ad8d955814513268)](https://scrutinizer-ci.com/g/prestaconcept/PrestaComposerPublicBundle/)
 
+[![Latest Stable Version](https://poser.pugx.org/presta/composer-public-bundle/v/stable.png)](https://packagist.org/packages/presta/cms-core-bundle)
+[![Total Downloads](https://poser.pugx.org/presta/composer-public-bundle/downloads.png)](https://packagist.org/packages/presta/cms-core-bundle)
+
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/fc4b4416-def6-428c-b873-5fd1f5a9ad39/big.png)](https://insight.sensiolabs.com/projects/fc4b4416-def6-428c-b873-5fd1f5a9ad39)
 [![PrestaComposerPublicBundle on Knpbundles](http://knpbundles.com/prestaconcept/PrestaComposerPublicBundle/badge)](http://knpbundles.com/prestaconcept/PrestaComposerPublicBundle)
 
 ## Introduction
@@ -168,9 +173,31 @@ At last but not least, do not forget to include your assets:
 
 If you're still not convinced by PrestaComposerPublicBundle, please consider the great [component installer for composer][3].
 
+## Ask for help ##
+
+:speech_balloon: If you need help about this project you can [post a message on our google group][4]
+
+## Contributing
+
+Pull requests are welcome.
+
+
+Thanks to
+[everyone who has contributed](https://github.com/prestaconcept/PrestaComposerPublicBundle/graphs/contributors) already.
+
+---
+
+*This project is supported by [PrestaConcept](http://www.prestaconcept.net)*
+
+**Lead Developer** : [@nicolas-joubert](https://github.com/nicolas-joubert)
+
+Released under the MIT License
+
+
 [1]: http://getcomposer.org/doc/05-repositories.md#package-2
 [2]: https://packagist.org/
 [3]: https://github.com/RobLoach/component-installer
+[4]: https://groups.google.com/forum/?hl=fr&fromgroups#!forum/prestacms-devs
 
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/prestaconcept/prestacomposerpublicbundle/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
