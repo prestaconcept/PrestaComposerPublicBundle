@@ -19,7 +19,7 @@ use Composer\Script\CommandEvent;
  */
 class ScriptHandler extends BaseScriptHandler
 {
-    public static function ComposerPublic(CommandEvent $event)
+    public static function composerPublic(CommandEvent $event)
     {
         $options = self::getOptions($event);
         $appDir = $options['symfony-app-dir'];

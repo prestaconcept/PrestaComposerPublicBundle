@@ -15,6 +15,7 @@ use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\Console\Tester\CommandTester;
 use Presta\ComposerPublicBundle\Command\BlendCommand;
 use Symfony\Component\Filesystem\Filesystem;
+
 /**
  * Description of TestBlendCommand
  *
@@ -53,8 +54,7 @@ class BlendCommandTest extends \PHPUnit_Framework_TestCase
         //fix app path (/Tests/app, not just /app)
         $kernel->expects($this->any())
                 ->method('getRootDir')
-                ->will($this->returnValue(realpath(__DIR__ . DIRECTORY_SEPARATOR . '..')))
-                ;
+                ->will($this->returnValue(realpath(__DIR__ . DIRECTORY_SEPARATOR . '..')));
 
         $kernel->__construct('test', true);
 

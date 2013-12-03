@@ -5,10 +5,14 @@ php:
     - 5.3
 
 before_script:
+    - pear install pear/PHP_CodeSniffer
+    - phpenv rehash
     - wget http://getcomposer.org/composer.phar
     - php composer.phar install --dev
 
-script: vendor/bin/phpunit -c Tests/app
+script:
+    - vendor/bin/phpunit -c Tests/app
+    - phpcs --ignore=/vendor/*,/Tests/Resources/app/* --extensions=php --encoding=utf-8 --standard=PSR2 -np .
 
 notifications:
   email:

@@ -39,8 +39,7 @@ class BlendCommand extends ContainerAwareCommand
             ->setName('presta:composer-public')
             ->setDescription('Include library in public folder of PrestaComposerPublicBundle')
             ->addOption('force', 'f', InputOption::VALUE_NONE, 'Force regeneration. Clean old libraries.')
-            ->addOption('copy', 'c', InputOption::VALUE_NONE, 'Force the copy of libraries instead of symlink')
-        ;
+            ->addOption('copy', 'c', InputOption::VALUE_NONE, 'Force the copy of libraries instead of symlink');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
@@ -98,8 +97,7 @@ class BlendCommand extends ContainerAwareCommand
 
             if (!isset($blended[$vendor]) || (
                     !isset($blended[$vendor][$name])&&
-                    !isset($toBlend[$vendor][$name])))
-            {
+                    !isset($toBlend[$vendor][$name]))) {
                 $toBlend[$vendor][$name] = $path;
             }
         }

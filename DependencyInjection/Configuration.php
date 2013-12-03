@@ -39,8 +39,7 @@ class Configuration implements ConfigurationInterface
                         ->scalarNode('path')->cannotBeEmpty()->defaultValue('/')->info('the path you want to be public (related to library root folder)')->end()
                     ->end()
                 ->end()
-            ->end()
-        ;
+            ->end();
 
         return $treeBuilder;
     }

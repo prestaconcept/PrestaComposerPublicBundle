@@ -6,14 +6,16 @@ if (file_exists($file = __DIR__ . '/../../vendor/autoload.php')) {
     throw new \RuntimeException('Dependencies are required');
 }
 
-spl_autoload_register(function($class) {
-    if (0 === strpos($class, 'Presta\\ComposerPublicBundle\\PrestaComposerPublicBundle')) {
-        $path = __DIR__ . '/../' . implode('/', array_slice(explode('\\', $class), 3)) . '.php';
-        if (!stream_resolve_include_path($path)) {
-            return false;
-        }
-        require_once $path;
+spl_autoload_register(
+    function ($class) {
+        if (0 === strpos($class, 'Presta\\ComposerPublicBundle\\PrestaComposerPublicBundle')) {
+            $path = __DIR__ . '/../' . implode('/', array_slice(explode('\\', $class), 3)) . '.php';
+            if (!stream_resolve_include_path($path)) {
+                return false;
+            }
+            require_once $path;
 
-        return true;
+            return true;
+        }
     }
-});
+);

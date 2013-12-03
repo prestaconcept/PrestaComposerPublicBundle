@@ -3,8 +3,8 @@
 [![Build Status](https://travis-ci.org/prestaconcept/PrestaComposerPublicBundle.png)](https://travis-ci.org/prestaconcept/PrestaComposerPublicBundle)
 [![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/prestaconcept/PrestaComposerPublicBundle/badges/quality-score.png?s=c9cd4805f46ef250b1310143ad8d955814513268)](https://scrutinizer-ci.com/g/prestaconcept/PrestaComposerPublicBundle/)
 
-[![Latest Stable Version](https://poser.pugx.org/presta/composer-public-bundle/v/stable.png)](https://packagist.org/packages/presta/cms-core-bundle)
-[![Total Downloads](https://poser.pugx.org/presta/composer-public-bundle/downloads.png)](https://packagist.org/packages/presta/cms-core-bundle)
+[![Latest Stable Version](https://poser.pugx.org/presta/composer-public-bundle/v/stable.png)](https://packagist.org/packages/presta/composer-public-bundle)
+[![Total Downloads](https://poser.pugx.org/presta/composer-public-bundle/downloads.png)](https://packagist.org/packages/presta/composer-public-bundle)
 
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/fc4b4416-def6-428c-b873-5fd1f5a9ad39/big.png)](https://insight.sensiolabs.com/projects/fc4b4416-def6-428c-b873-5fd1f5a9ad39)
 [![PrestaComposerPublicBundle on Knpbundles](http://knpbundles.com/prestaconcept/PrestaComposerPublicBundle/badge)](http://knpbundles.com/prestaconcept/PrestaComposerPublicBundle)
