@@ -28,6 +28,8 @@ class BlendCommandTest extends \PHPUnit_Framework_TestCase
         $fs = new Filesystem();
         $foobarPath = realpath(__DIR__.DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'vendor') . DIRECTORY_SEPARATOR . 'foo' . DIRECTORY_SEPARATOR . 'bar';
         $fs->mkdir($foobarPath);
+        $fooinlinebarPath = realpath(__DIR__.DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'vendor') . DIRECTORY_SEPARATOR . 'foo' . DIRECTORY_SEPARATOR . 'inlineBar';
+        $fs->mkdir($fooinlinebarPath);
     }
 
     public function testExecute()

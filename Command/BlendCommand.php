@@ -13,8 +13,6 @@ use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-
-use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;
 
@@ -25,14 +23,16 @@ use Symfony\Component\Finder\Finder;
  */
 class BlendCommand extends ContainerAwareCommand
 {
+    /**
+     * @var string target location for bundles
+     */
     protected $bundlePath;
 
-    public function __construct($name = null)
+    protected function initialize(InputInterface $input, OutputInterface $output)
     {
-        parent::__construct($name);
-
-        $this->bundlePath = realpath(__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'Resources' . DIRECTORY_SEPARATOR . 'public');
+        $this->bundlePath = realpath($this->getContainer()->getParameter('kernel.root_dir') . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'Resources' . DIRECTORY_SEPARATOR . 'public');
     }
+
     protected function configure()
     {
         $this
@@ -46,7 +46,7 @@ class BlendCommand extends ContainerAwareCommand
     {
         $fs = new Filesystem();
 
-        $output->writeln(sprintf('Blend public libraries in <comment>Presta\ComposerPublicBundle</comment>'));
+        $output->writeln('Blend public libraries in <comment>Presta\ComposerPublicBundle</comment>');
 
         /**
          * @var array of [vendor[] => name] already present
@@ -88,7 +88,7 @@ class BlendCommand extends ContainerAwareCommand
             $path = isset($params['path']) ? $params['path'] : null;
 
             if (!$vendor && !$name) {
-                list($vendor, $name) = spliti('/', $key, 2);
+                list($vendor, $name) = explode('/', $key, 2);
             }
 
             if (!isset($toBlend[$vendor])) {

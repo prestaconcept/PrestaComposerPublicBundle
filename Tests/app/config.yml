@@ -20,3 +20,4 @@ presta_composer_public:
             vendor: foo
             name: bar
             path: /
+        foo/inlineBar: ~
