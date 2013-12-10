@@ -28,9 +28,18 @@ class BlendCommand extends ContainerAwareCommand
      */
     protected $bundlePath;
 
+    /**
+     * @var \ReflectionObject
+     */
+    protected $reflected;
+
+    /**
+     * @param InputInterface $input
+     * @param OutputInterface $output
+     */
     protected function initialize(InputInterface $input, OutputInterface $output)
     {
-        $this->bundlePath = realpath($this->getContainer()->getParameter('kernel.root_dir') . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'Resources' . DIRECTORY_SEPARATOR . 'public');
+        $this->bundlePath = realpath($this->getCurrentPath() . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'Resources' . DIRECTORY_SEPARATOR . 'public');
     }
 
     protected function configure()
@@ -42,6 +51,12 @@ class BlendCommand extends ContainerAwareCommand
             ->addOption('copy', 'c', InputOption::VALUE_NONE, 'Force the copy of libraries instead of symlink');
     }
 
+    /**
+     * @param InputInterface $input
+     * @param OutputInterface $output
+     * @return int|null|void
+     * @throws \InvalidArgumentException
+     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $fs = new Filesystem();
@@ -128,5 +143,17 @@ class BlendCommand extends ContainerAwareCommand
                 $output->writeln(sprintf('The library <info>%s/%s</info> has been added', $vendor, $name));
             }
         }
+    }
+
+    /**
+     * @return string
+     */
+    protected function getCurrentPath()
+    {
+        if (null === $this->reflected) {
+            $this->reflected = new \ReflectionObject($this);
+        }
+
+        return dirname($this->reflected->getFileName());
     }
 }
