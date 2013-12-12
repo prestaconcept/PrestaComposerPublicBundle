@@ -29,11 +29,6 @@ class BlendCommand extends ContainerAwareCommand
     protected $bundlePath;
 
     /**
-     * @var \ReflectionObject
-     */
-    protected $reflected;
-
-    /**
      * @param InputInterface $input
      * @param OutputInterface $output
      */
