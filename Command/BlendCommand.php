@@ -39,7 +39,7 @@ class BlendCommand extends ContainerAwareCommand
      */
     protected function initialize(InputInterface $input, OutputInterface $output)
     {
-        $this->bundlePath = realpath($this->getCurrentPath() . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'Resources' . DIRECTORY_SEPARATOR . 'public');
+        $this->bundlePath = realpath($this->getContainer()->get('kernel')->getBundle('PrestaComposerPublicBundle')->getPath() . DIRECTORY_SEPARATOR  . 'Resources' . DIRECTORY_SEPARATOR . 'public');
     }
 
     protected function configure()
@@ -143,17 +143,5 @@ class BlendCommand extends ContainerAwareCommand
                 $output->writeln(sprintf('The library <info>%s/%s</info> has been added', $vendor, $name));
             }
         }
-    }
-
-    /**
-     * @return string
-     */
-    protected function getCurrentPath()
-    {
-        if (null === $this->reflected) {
-            $this->reflected = new \ReflectionObject($this);
-        }
-
-        return dirname($this->reflected->getFileName());
     }
 }
