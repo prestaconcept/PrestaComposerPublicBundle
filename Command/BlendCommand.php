@@ -132,7 +132,7 @@ class BlendCommand extends ContainerAwareCommand
                 if ($input->getOption('copy') == false && isset($config['symlink']) && $config['symlink']) {
                     $fs->symlink($originPath, $targetPath);
                 } else {
-                    $fs->copy($originPath, $targetPath);
+                    $fs->mirror($originPath, $targetPath, null, array('delete' => true, 'override' => true));
                 }
 
                 $output->writeln(sprintf('The library <info>%s/%s</info> has been added', $vendor, $name));
