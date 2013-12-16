@@ -145,6 +145,9 @@ presta_composer_public:
 Launch the command `app/console config:dump-reference PrestaComposerPublicBundle`
 for more details.
 
+By default, assets from vendor/wesnolte/Pajinate (for example) were hard copy to Ressources/public/ of the prestaComposerPublicBundle.
+If symlink: true option is set and OS was able to use it, a symlink replace hard copy.
+
 
 Finally you only need to install your vendors: 
 
