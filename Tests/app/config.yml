@@ -14,7 +14,7 @@ framework:
 
 
 presta_composer_public:
-    symlink: true
+    symlink: false
     blend:
         foo/bar:
             vendor: foo
