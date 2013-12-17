@@ -29,7 +29,7 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
-                ->booleanNode('symlink')->defaultTrue()->info('create a symlink in PrestaComposerPublicBundle folder or a hardcopy.')->end()
+                ->booleanNode('symlink')->defaultFalse()->info('create a symlink in PrestaComposerPublicBundle folder or a hardcopy.')->end()
                 ->arrayNode('blend')
                     ->info('Without parameters the key is used to detect vendor & name')
                     ->prototype('array')
