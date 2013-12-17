@@ -11,10 +11,8 @@ namespace Presta\ComposerPublicBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Filesystem\Filesystem;
-use Symfony\Component\Finder\Finder;
 
 /**
  * Description of BlendCommand
@@ -27,6 +25,11 @@ class BlendCommand extends ContainerAwareCommand
      * @var string target location for bundles
      */
     protected $bundlePath;
+    
+    /**
+     * @var array bundle configuration
+     */
+    protected $config;
 
     /**
      * @param InputInterface $input
@@ -34,16 +37,15 @@ class BlendCommand extends ContainerAwareCommand
      */
     protected function initialize(InputInterface $input, OutputInterface $output)
     {
-        $this->bundlePath = realpath($this->getContainer()->get('kernel')->getBundle('PrestaComposerPublicBundle')->getPath() . DIRECTORY_SEPARATOR  . 'Resources' . DIRECTORY_SEPARATOR . 'public');
+        $this->bundlePath   = realpath($this->getContainer()->get('kernel')->getBundle('PrestaComposerPublicBundle')->getPath() . DIRECTORY_SEPARATOR  . 'Resources' . DIRECTORY_SEPARATOR . 'public');
+        $this->config       = $this->getContainer()->getParameter('presta_composer_public');
     }
 
     protected function configure()
     {
         $this
             ->setName('presta:composer-public')
-            ->setDescription('Include library in public folder of PrestaComposerPublicBundle')
-            ->addOption('force', 'f', InputOption::VALUE_NONE, 'Force regeneration. Clean old libraries.')
-            ->addOption('copy', 'c', InputOption::VALUE_NONE, 'Force the copy of libraries instead of symlink');
+            ->setDescription('Include library in public folder of PrestaComposerPublicBundle');
     }
 
     /**
@@ -58,41 +60,10 @@ class BlendCommand extends ContainerAwareCommand
 
         $output->writeln('Blend public libraries in <comment>Presta\ComposerPublicBundle</comment>');
 
-        /**
-         * @var array of [vendor[] => name] already present
-         */
-        $blended = array();
-        //list library subdirectories
-        $finder = Finder::create();
-        $finder->directories()
-                ->depth('> 0')
-                ->depth('< 2')
-                ->in($this->bundlePath);
-
-        foreach ($finder as $directory) {
-            if ($input->getOption('force')) {
-                if ($fs->exists($directory->getPath())) {
-                    $fs->remove($directory->getPath());
-                }
-                continue;
-            }
-
-            if (!isset($blended[$directory->getRelativePath()])) {
-                $blended[$directory->getRelativePath()] = array();
-            }
-
-            $libName = substr($directory->getRelativePathName(), strpos($directory->getRelativePathName(), '/') + 1);
-
-            $blended[$directory->getRelativePath()][$libName] = DIRECTORY_SEPARATOR;
-
-        }
-
-        //get configuration
         $toBlend = array();
-        $config = $this->getContainer()->getParameter('presta_composer_public');
 
         //check target folder
-        foreach ($config['blend'] as $key => $params) {
+        foreach ($this->config['blend'] as $key => $params) {
             $vendor = isset($params['vendor']) ? $params['vendor'] : null;
             $name = isset($params['name']) ? $params['name'] : null;
             $path = isset($params['path']) ? $params['path'] : null;
@@ -101,13 +72,7 @@ class BlendCommand extends ContainerAwareCommand
                 list($vendor, $name) = explode('/', $key, 2);
             }
 
-            if (!isset($toBlend[$vendor])) {
-                $toBlend[$vendor] = array();
-            }
-
-            if (!isset($blended[$vendor]) || (
-                    !isset($blended[$vendor][$name])&&
-                    !isset($toBlend[$vendor][$name]))) {
+            if (!isset($toBlend[$vendor][$name])) {
                 $toBlend[$vendor][$name] = $path;
             }
         }
@@ -118,7 +83,7 @@ class BlendCommand extends ContainerAwareCommand
         foreach ($toBlend as $vendor => $names) {
             foreach ($names as $name => $path) {
                 $originPath = realpath($vendorDir . DIRECTORY_SEPARATOR . $vendor . DIRECTORY_SEPARATOR . $name . DIRECTORY_SEPARATOR . ltrim($path, DIRECTORY_SEPARATOR));
-                $targetDir = realpath($this->bundlePath) . DIRECTORY_SEPARATOR . $vendor;
+                $targetDir  = realpath($this->bundlePath) . DIRECTORY_SEPARATOR . $vendor;
                 $targetPath = $targetDir . DIRECTORY_SEPARATOR . $name;
 
                 if (!$originPath) {
@@ -129,7 +94,7 @@ class BlendCommand extends ContainerAwareCommand
                     $fs->mkdir($targetDir);
                 }
 
-                if ($input->getOption('copy') == false && isset($config['symlink']) && $config['symlink']) {
+                if (isset($this->config['symlink']) && $this->config['symlink']) {
                     $fs->symlink($originPath, $targetPath);
                 } else {
                     $fs->mirror($originPath, $targetPath, null, array('delete' => true, 'override' => true));
