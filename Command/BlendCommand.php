@@ -56,13 +56,22 @@ class BlendCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $fs = new Filesystem();
-
         $output->writeln('Blend public libraries in <comment>Presta\ComposerPublicBundle</comment>');
 
+        $toBlend = $this->getBundlesToBlend();
+
+        $this->blend($toBlend, $output);
+    }
+
+    /**
+     * Extract bundles to blend from config
+     *
+     * @return array
+     */
+    private function getBundlesToBlend()
+    {
         $toBlend = array();
 
-        //check target folder
         foreach ($this->config['blend'] as $key => $params) {
             $vendor = isset($params['vendor']) ? $params['vendor'] : null;
             $name = isset($params['name']) ? $params['name'] : null;
@@ -77,8 +86,20 @@ class BlendCommand extends ContainerAwareCommand
             }
         }
 
-        //include library
-        $vendorDir = $this->getContainer()->getParameter('kernel.root_dir') . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'vendor';
+        return $toBlend;
+    }
+
+    /**
+     * Blend bundles into prestaComposer vendor directory
+     *
+     * @param $toBlend
+     * @param OutputInterface $output
+     * @throws \InvalidArgumentException
+     */
+    private function blend($toBlend, OutputInterface $output)
+    {
+        $fs         = new Filesystem();
+        $vendorDir  = $this->getContainer()->getParameter('kernel.root_dir') . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'vendor';
 
         foreach ($toBlend as $vendor => $names) {
             foreach ($names as $name => $path) {
