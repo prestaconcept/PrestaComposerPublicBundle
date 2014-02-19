@@ -2,7 +2,6 @@
 
 [![Build Status](https://travis-ci.org/prestaconcept/PrestaComposerPublicBundle.png)](https://travis-ci.org/prestaconcept/PrestaComposerPublicBundle)
 [![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/prestaconcept/PrestaComposerPublicBundle/badges/quality-score.png?s=c9cd4805f46ef250b1310143ad8d955814513268)](https://scrutinizer-ci.com/g/prestaconcept/PrestaComposerPublicBundle/)
-
 [![Latest Stable Version](https://poser.pugx.org/presta/composer-public-bundle/v/stable.png)](https://packagist.org/packages/presta/composer-public-bundle)
 [![Total Downloads](https://poser.pugx.org/presta/composer-public-bundle/downloads.png)](https://packagist.org/packages/presta/composer-public-bundle)
 
