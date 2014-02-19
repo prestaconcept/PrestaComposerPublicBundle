@@ -25,7 +25,7 @@ class BlendCommand extends ContainerAwareCommand
      * @var string target location for bundles
      */
     protected $bundlePath;
-    
+
     /**
      * @var array bundle configuration
      */
@@ -113,6 +113,14 @@ class BlendCommand extends ContainerAwareCommand
 
                 if (!$fs->exists($targetDir)) {
                     $fs->mkdir($targetDir);
+                }
+
+                // Switch for symlink to hard copy or from hard copy to symlink
+                if (is_link($targetPath) && (!isset($this->config['symlink']) || !$this->config['symlink'])
+                    ||
+                    is_dir($targetPath) && isset($this->config['symlink']) && $this->config['symlink']
+                ) {
+                    $fs->remove($targetPath);
                 }
 
                 if (isset($this->config['symlink']) && $this->config['symlink']) {
