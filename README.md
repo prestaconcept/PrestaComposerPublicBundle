@@ -17,7 +17,7 @@ libraries (javascripts, css, pictures ...) into your projects and keep its up-to
 2. Configure the library in PrestaComposerPublicBundle
 3. Use the library as any other assets in the project.
 
-:speech_balloon: If you want to have some information about the project progression you can register to our [google group][4]
+:speech_balloon: If you want to have some information about the project progression you can register to our [google group][1]
 
 ## Why this bundle?
 
@@ -35,7 +35,7 @@ and then keep it up-to-date simply with composer.
 
 ## Documentation ##
 
-:book: Documentation is available on [prestaconcept.github.io][5]
+:book: Documentation is available on [prestaconcept.github.io][2]
 
 ## Demonstration ##
 
@@ -43,13 +43,13 @@ For a ready to use demonstration of this bundle you should check the [prestacms-
 
 Sandbox is also deployed for a live demonstration :
 
--   [Frontend site][6]
--   [Administration Site][7]
+-   [Frontend site][4]
+-   [Administration Site][5]
 
 
 ## Ask for help ##
 
-:speech_balloon: If you need help about this project you can [post a message on our google group][4]
+:speech_balloon: If you need help about this project you can [post a message on our google group][1]
 
 ## Contributing
 
@@ -68,13 +68,11 @@ Thanks to
 Released under the MIT License
 
 
-[1]: http://getcomposer.org/doc/05-repositories.md#package-2
-[2]: https://packagist.org/
+[1]: https://groups.google.com/forum/?hl=fr&fromgroups#!forum/prestacms-devs
+[2]: http://prestaconcept.github.io/presta-composer-public/
 [3]: https://github.com/prestaconcept/prestacms-sandbox
-[4]: https://groups.google.com/forum/?hl=fr&fromgroups#!forum/prestacms-devs
-[5]: http://prestaconcept.github.io/presta-composer-public/
-[6]: http://sandbox.prestacms.com/
-[7]: http://sandbox.prestacms.com/admin
+[4]: http://sandbox.prestacms.com/
+[5]: http://sandbox.prestacms.com/admin
 
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/prestaconcept/prestacomposerpublicbundle/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
